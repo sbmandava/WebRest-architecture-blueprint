@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Webpage</title>
+</head>
+<body>
+  <h1>Users</h1>
+  {% for user in data %}
+    <li><a href="/user/listuser/{{ user['userid'] }}">{{ user['userid'] }}</a></li>
+  {% endfor %}
+</body>
+</html>
+
+

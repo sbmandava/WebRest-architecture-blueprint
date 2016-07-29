@@ -1,0 +1,16 @@
+<ul>
+# 1. Use the key to access the value from data #}
+{% for key in data %}
+  {{ data[key].item }}
+{% endfor %}
+
+{# 2. Explicitly enumerate the values #}
+{% for value in data.values() %}
+  {{ value.item }}
+{% endfor %}
+
+{# 3. Enumerate key-value pairs #}
+{% for key, value in data.items() %}
+  {{ value.item }}
+{% endfor %}
+</ul>

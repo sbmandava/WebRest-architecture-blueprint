@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %} - Home{% endblock %}
+{% block content %}
+
+      <h2 style = "text-align: center;">Contact Form</h2>
+
+      {% for message in form.userID.errors %}
+         <div>{{ message }}</div>
+      {% endfor %}
+      
+      {% for message in form.userName.errors %}
+         <div>{{ message }}</div>
+      {% endfor %}
+      
+      {% for message in form.pHone.errors %}
+         <div>{{ message }}</div>
+      {% endfor %}
+      
+      {% for message in form.eMail.errors %}
+         <div>{{ message }}</div>
+      {% endfor %}
+		
+      <form action = "http://localhost:8080/adduser" method = post>
+         <fieldset>
+            <legend>Contact Form</legend>
+            {{ form.hidden_tag() }}
+               
+               {{ form.userID.label }}<br>
+               {{ form.userID }}
+               <br>
+            
+               {{ form.userName.label }}<br>
+               {{ form.userName }}
+               <br>
+               
+               {{ form.eMail.label }}<br>
+               {{ form.eMail }}
+               <br>
+               
+               {{ form.pHone.label }}<br>
+               {{ form.pHone }}
+               <br>
+               
+               {{ form.submit }}
+            </div>
+            
+         </fieldset>
+      </form>
+      
+{% endblock %}

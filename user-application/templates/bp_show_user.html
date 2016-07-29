@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} - Home{% endblock %}
+{% block content %}
+
+    <h4>User Details</h4>
+    <li>User ID : {{ userID }}</li>
+    <li>User Name : {{ userName }}</li>
+    <li>Email ID : {{ eMail }} </li>
+    <li>Phone : {{ pHone }} </li>
+<!--
+# {% if not session.logged_in %}
+#    <p>You are not logged in.</p>
+# {% else %}
+#      <p>You are logged in.</p>
+# {% endif %}
+-->
+
+{% endblock %}

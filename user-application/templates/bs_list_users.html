@@ -1,0 +1,61 @@
+{# This simple template derives from ``base.html``. See ``base.html`` for
+   more information about template inheritance. #}
+{%- extends "base.html" %}
+
+{# Loads some of the macros included with Flask-Bootstrap. We are using the
+   utils module here to automatically render Flask's flashed messages in a
+   bootstrap friendly manner #}
+{% import "bootstrap/utils.html" as utils %}
+
+{% block navbar %}
+ <div class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Navbar</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">SampleApp</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/user/listusers">Users</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{# Inside the ``content`` is where you should place most of your own stuff.
+   This will keep scripts at the page end and a navbar you add on later
+   intact. #}
+{% block content %}
+  <div class="container">
+  {%- with messages = get_flashed_messages(with_categories=True) %}
+  {%- if messages %}
+    <div class="row">
+      <div class="col-md-12">
+        {{utils.flashed_messages(messages)}}
+      </div>
+    </div>
+  {%- endif %}
+  {%- endwith %}
+    <div class="jumbotron">
+      <h2>Welcome to Sample App</h2>
+      <p>This is a example application which converts JSON into HTML using Jinja2 Templates using Flask-Bootstrap</p>
+
+    {% for user in data %}
+       <li><a href="/user/listuser/{{ user['userid'] }}">{{ user['userid'] }}</a></li>
+    {% endfor %}
+     <!--
+       <p>
+       # <a class="btn btn-lg btn-default" role="button"
+       #    href="http://pythonhosted.org/Flask-Bootstrap" >Show docs</a>
+      # </p>
+     -->
+    </div>
+   </div>
+{%- endblock %}
