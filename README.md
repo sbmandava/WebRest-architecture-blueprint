@@ -1,4 +1,5 @@
 Develop a Sample Application Blueprint using Python
+
 Long Term Objectives : Enterprise Grade Security, Cloud/Mobile Ready, Containerized, API Enabled, BigData Realtime Backend 
 
 # Quick Start
