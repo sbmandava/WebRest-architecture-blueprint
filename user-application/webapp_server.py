@@ -3,7 +3,7 @@
 ## 0.5 : Has listusers function.
 ## 0.6 : Add Twitter BootStrap Templates.
 ##        https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
-##
+## 0.7 : AddUser Form, Submit JSON to API Server.
 
 
 ## Variables.
@@ -14,11 +14,9 @@ from flask import Flask, request, session, g, redirect, url_for, abort, render_t
 from flask_restful import reqparse
 from flask_bootstrap import Bootstrap
 
-from webapp.adduser_form import AddUserForm 
+from webapp.adduser_form import AddUserForm
 import requests
 import json
-
-
 
 # Create app
 app = Flask(__name__)
@@ -71,20 +69,7 @@ def get_users():
 
    return render_template('bp_list_users.html', data = data)
 
-@app.route('/contact', methods = ['GET', 'POST'])
-def contact():
-   form = ContactForm()
-
-   if request.method == 'POST':
-       if form.validate() == False:
-           flash('All fields are required.')
-           return render_template('contact.html', form = form)
-       else:
-           return render_template('success.html')
-   elif request.method == 'GET':
-       return render_template('contact.html', form = form)
-
-@app.route('/adduser', methods = ['GET', 'POST'])
+@app.route('/user/adduser', methods = ['GET', 'POST'])
 def adduser():
    form = AddUserForm()
 
@@ -93,11 +78,15 @@ def adduser():
            flash('All fields are required.')
            return render_template('adduser.html', form = form)
        else:
+           url = "http://127.0.0.1:5000/api/v1.0/user/adduser"
+           data = request.form   # This takes the form data submitted.
+           headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+           r = requests.post(url, data=json.dumps(data), headers=headers)   # Now send the data to API Server
            return render_template('success.html')
-   elif request.method == 'GET':
-       return render_template('adduser.html', form = form)
 
+    elif request.method == 'GET':
+       return render_template('adduser.html', form = form)
 
 # Now run the Server on port 8080
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080,debug=True)
+    app.run(host='0.0.0.0',port=8080,debug=True)

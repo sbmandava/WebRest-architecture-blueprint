@@ -20,7 +20,7 @@
          <div>{{ message }}</div>
       {% endfor %}
 		
-      <form action = "http://localhost:8080/adduser" method = post>
+      <form action = "/user/adduser" method = post>
          <fieldset>
             <legend>Contact Form</legend>
             {{ form.hidden_tag() }}
