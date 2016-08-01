@@ -84,7 +84,7 @@ def adduser():
            r = requests.post(url, data=json.dumps(data), headers=headers)   # Now send the data to API Server
            return render_template('success.html')
 
-    elif request.method == 'GET':
+   elif request.method == 'GET':
        return render_template('adduser.html', form = form)
 
 # Now run the Server on port 8080
